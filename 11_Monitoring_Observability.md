@@ -36,16 +36,18 @@ Example:
 }
 ```
 
-Dashboards
+## 📊 Monitoring & Observability
 
-DataDog → Service Performance Overview
+### 📈 Dashboards
 
-CloudWatch → Infrastructure Health
+| Tool        | Purpose |
+|--------------|----------|
+| **DataDog**  | Service Performance Overview |
+| **CloudWatch** | Infrastructure Health |
+| **Grafana**  | Custom dashboards for integration latency and error rates |
 
-Grafana → Custom dashboards for integration latency and error rates
 
-
-## Alerts
+### Alerts
 | Source          | Threshold       | Action                   |
 | --------------- | --------------- | ------------------------ |
 | CPU Usage       | > 80% for 5 min | Scale ECS Service        |
@@ -54,11 +56,9 @@ Grafana → Custom dashboards for integration latency and error rates
 | Database Lag    | > 30 s          | Notify Ops               |
 | Security Events | any critical    | Security Incident Bridge |
 
-Synthetic Monitoring
+### 🤖 Synthetic Monitoring
 
-Pingdom checks (5 min interval) → Health endpoint (/_health)
-
-Postman collection runs CI/CD smoke tests post-deploy
-
-Canary tests simulate employment creation flow every 15 min
+- **Pingdom** checks every **5 minutes** → hits health endpoint (`/_health`)  
+- **Postman collection runs** as **CI/CD smoke tests** after each deployment  
+- **Canary tests** simulate **employment creation flow** every **15 minutes**  
 

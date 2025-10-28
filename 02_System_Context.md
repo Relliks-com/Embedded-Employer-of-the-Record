@@ -76,87 +76,69 @@
                      └───────────────────┘
 ```
 
-Key Interactions
+## 🔑 Key Interactions
 
-Acme Users → Acme Platform
+### 1. Acme Users → Acme Platform
+- Initiate employee onboarding  
+- Monitor status in real-time  
+- Approve time-off requests  
+- View compliance reports  
 
-Initiate employee onboarding
+---
 
-Monitor status in real-time
+### 2. Acme Platform → Remote API
+- **Create employment contracts** → `POST /v1/employments`  
+- **Fetch current status** → `GET /v1/employments/{id}`  
+- **Update employee details** → `PATCH /v1/employments/{id}`  
+- **List time-off requests** → `GET /v1/timeoff`  
 
-Approve time-off requests
+---
 
-View compliance reports
+### 3. Remote Platform → Acme Platform
+- Send lifecycle webhooks (`employment.verified`, `employment.active`)  
+- Push real-time updates (`timeoff.approved`, `document.uploaded`)  
+- Notify about critical events (compliance issues, terminations)  
 
-Acme Platform → Remote API
+---
 
-Create employment contracts (POST /v1/employments)
+### 4. Employees → Remote Platform
+- Complete onboarding forms  
+- Upload identity documents  
+- Sign employment contracts  
+- Request time-off  
 
-Fetch current status (GET /v1/employments/{id})
+---
 
-Update employee details (PATCH /v1/employments/{id})
+## ⚙️ External Dependencies
 
-List time-off requests (GET /v1/timeoff)
+### AWS Services
+- **ECS Fargate** — compute layer  
+- **RDS PostgreSQL** — primary relational database  
+- **ElastiCache Redis** — low-latency cache layer  
+- **SQS** — message queuing system  
+- **Secrets Manager** — secure key and credential storage  
 
-Remote Platform → Acme Platform
+---
 
-Send lifecycle webhooks (employment.verified, employment.active)
+### Monitoring & Observability
+- **DataDog** — metrics & APM  
+- **PagerDuty** — incident alerting  
+- **Sentry** — error tracking and exception logging  
 
-Push real-time updates (timeoff.approved, document.uploaded)
+---
 
-Notify about critical events (compliance issues, terminations)
+## 💼 Business Context
 
-Employees → Remote Platform
+### Primary Use Cases
+- **Global Hiring:** Acme customers can hire employees in 150+ countries  
+- **Onboarding Orchestration:** Track multi-step processes across integrated systems  
+- **Lifecycle Management:** Sync employee changes bidirectionally between Acme and Remote  
+- **Compliance Assurance:** Maintain full audit trails and reconciliation reports  
 
-Complete onboarding forms
+---
 
-Upload identity documents
-
-Sign employment contracts
-
-Request time-off
-
-External Dependencies
-
-AWS Services
-
-ECS Fargate (compute)
-
-RDS PostgreSQL (database)
-
-ElastiCache Redis (caching)
-
-SQS (message queuing)
-
-Secrets Manager (key storage)
-
-Monitoring & Observability
-
-DataDog (metrics & APM)
-
-PagerDuty (alerting)
-
-Sentry (error tracking)
-
-Business Context
-Primary Use Cases
-
-Global Hiring: Acme customer hires employee in 150+ countries
-
-Onboarding Orchestration: Track multi-step process across systems
-
-Lifecycle Management: Sync employee changes bidirectionally
-
-Compliance Assurance: Audit trail + reconciliation
-
-Success Criteria
-
-95% of employments created without manual intervention
-
-<48 hours median time-to-active
-
-99.9% system uptime
-
-<0.1% data inconsistency rate
-
-```
+### Success Criteria
+- ✅ 95% of employments created without manual intervention  
+- ⚡ <48 hours median time-to-active  
+- 🕒 99.9% system uptime  
+- 📊 <0.1% data inconsistency rate  

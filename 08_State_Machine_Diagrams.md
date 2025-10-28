@@ -51,7 +51,7 @@
 | `remote.terminate_success()`    | Termination Pending        | Terminated                 | Close employment    |
 
 
-##Compensation Flows
+## ⚙️ Compensation Flows
 
 ```
 create_remote_employment → delete_remote_employment
@@ -59,17 +59,14 @@ create_local_employment → soft_delete_local_employment
 update_remote_status → retry_remote_update
 ```
 
-##Time-Based State Transitions
+## ⏱️Time-Based State Transitions
 
-##Auto-expire draft after 7 days of inactivity
+ - Auto-expire draft after 7 days of inactivity
+ - Auto-escalate verification after 72h pending
+ - Auto-notify HR for unsigned contracts >5 days
 
-##Auto-escalate verification after 72h pending
+## 🔒 Security Controls
 
-##Auto-notify HR for unsigned contracts >5 days
-
-
-NACLs limit external ingress to ports 443/80 only
-
-Secrets injected at runtime via IAM task roles
-
-WAF & Shield Advanced for DDoS protection
+ - NACLs limit external ingress to ports 443/80 only
+ - Secrets injected at runtime via IAM task roles
+ - WAF & Shield Advanced for DDoS protection

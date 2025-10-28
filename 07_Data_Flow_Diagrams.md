@@ -102,14 +102,11 @@ Payload:
 | Payroll    | Remote | Acme        | Monthly payslips         |
 | Document   | Both   | Both        | ID, tax, compliance docs |
 
-##Data Validation Rules
 
-##All POST requests validated via JSON Schema Draft 07
+## 🧪Data Validation Rules
 
-##Dates → ISO 8601 (YYYY-MM-DD)
-
-##Currency → ISO 4217 (USD, EUR, GBP)
-
-##Salary range validation by country config
-
-##Names sanitized (no control chars)
+ - All POST requests validated via JSON Schema Draft 07
+ - Dates → ISO 8601 (YYYY-MM-DD)
+ - Currency → ISO 4217 (USD, EUR, GBP)
+ - Salary range validation by country config
+ - Names sanitized (no control chars)

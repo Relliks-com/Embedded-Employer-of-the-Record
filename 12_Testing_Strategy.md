@@ -19,71 +19,59 @@
            ▼
 ```
 
-Unit Tests
+# 🧪 Testing & Quality Assurance
 
-Framework: Jest / xUnit
+## 🧩 Unit Tests
 
-Coverage target: ≥ 90%
+| **Framework** | **Coverage Target** | **Execution** |
+|----------------|----------------------|----------------|
+| Jest / xUnit  | ≥ 90%                | Run in CI on every PR |
 
-Run in CI on every PR
-
-Example:
-
+**Example:**
+```javascript
 test("creates employment successfully", async () => {
   const result = await createEmployment(mockRequest);
   expect(result.status).toBe("PENDING_REMOTE_CREATE");
 });
+```
 
-Integration Tests
+## 🔗 Integration Tests
 
-Use WireMock to simulate Remote API responses
+ - Use WireMock to simulate Remote API responses
+ - Run Dockerized Redis + Postgres locally
+ - Validate Saga execution and compensation logic
+ - Assert eventual consistency after retries
 
-Run Dockerized Redis + Postgres locally
+## 🤝 Contract Testing
 
-Validate Saga execution and compensation logic
+ - Pact contract between Acme and Remote EOR
+ - Enforced in CI: consumer driven tests must match provider schema
 
-Assert eventual consistency after retries
+## 🌐 End-to-End Testing
 
-Contract Testing
+- Cypress suite → user flows (e.g., hire employee, terminate)
+- Smoke tests triggered on every deploy
+- Data reset between runs using seed fixtures
 
-Pact contract between Acme and Remote EOR
+## ⚡Performance Testing
 
-Enforced in CI: consumer driven tests must match provider schema
+| Tool       | Scope               | SLA / Target                     | Profiles                 |
+| ---------- | ------------------- | -------------------------------- | ------------------------ |
+| **Locust** | Staging Environment | P95 < 2s for employment creation | Normal / Peak / Failover |
 
-End-to-End Testing
+## 🛡️ Security Testing
 
-Cypress suite → user flows (e.g., hire employee, terminate)
+- OWASP ZAP dynamic scans nightly
+- SAST (SonarQube) + DAST (ZAP) integration in pipeline
+- Manual pentest quarterly
 
-Smoke tests triggered on every deploy
-
-Data reset between runs using seed fixtures
-
-Performance Testing
-
-Locust (10k virtual users) against staging
-
-SLA: P95 < 2 s for employment creation
-
-Load profiles: normal, peak, failover
-
-Security Testing
-
-OWASP ZAP dynamic scans nightly
-
-SAST (SonarQube) + DAST (ZAP) integration in pipeline
-
-Manual pentest quarterly
-
-CI/CD Integration
+## 🔁 CI/CD Integration
 
 GitHub Actions + CodePipeline
 
 Gates:
 
-✅ All tests pass
-
-✅ SonarQube A rating
-
-✅ No critical CVEs
-
-✅ Code coverage ≥ 90%
+ - ✅ All tests pass
+ - ✅ SonarQube A rating
+ - ✅ No critical CVEs
+ - ✅ Code coverage ≥ 90%

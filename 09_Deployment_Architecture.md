@@ -53,28 +53,26 @@
               │ Audit logs    │
               └───────────────┘
 
-Deployment Strategy
+## 🧭Deployment Strategy
 
-Blue-Green Deployments: via CodeDeploy hooks
+ - Blue-Green Deployments: via CodeDeploy hooks
+ - Zero Downtime: pre-warmed containers and connection draining
 
-Zero Downtime: pre-warmed containers and connection draining
+## Autoscaling:
 
-Autoscaling:
+ - CPU > 70% → scale out
+ - Queue depth > 500 → add worker replicas
+ - Idle 10m → scale in
 
-CPU > 70% → scale out
+## 🌍Regions
+| Region Type       | Region    | RPO    | RTO   |
+| ----------------- | --------- | ------ | ----- |
+| Primary           | us-east-1 | ______ | _____ |
+| Disaster Recovery | eu-west-1 | 15 min | 30 min|
 
-Queue depth > 500 → add worker replicas
+Disaster Recovery:  (RPO: , RTO: )
 
-Idle 10m → scale in
+## 🔒Networking & Security
 
-Regions
-
-Primary: us-east-1
-
-DR: eu-west-1 (RPO: 15 min, RTO: 30 min)
-
-Networking & Security
-
-Private subnets for DB/cache
-
-Security groups restrict access to ALB only
+ - Private subnets for DB/cache
+ - Security groups restrict access to ALB only

@@ -45,50 +45,38 @@ Security is implemented through a **defense-in-depth** strategy, combining encry
 └──────────────────────────────┘
 ```
 
-Policies
+## 🔐 Security & Compliance Policies
 
-ALB → ECS only (port 443)
+### 🧱 Network & Access Policies
 
-ECS Tasks → DB/Redis (private network only)
+- **ALB → ECS only** (port **443**)  
+- **ECS Tasks → DB/Redis** (private network only)  
+- **No outbound internet access** from ECS tasks except via **NAT Gateway**  
+- **Ingress** filtered by **AWS WAF**  
+- **Security audit logs** streamed to **CloudWatch** and **S3**
 
-No outbound internet access from ECS tasks except via NAT Gateway
+### 🔒 Data Protection
 
-Ingress filtered by AWS WAF
+| Control | Description |
+|----------|-------------|
+| **Encryption in Transit** | TLS 1.3 end-to-end |
+| **Encryption at Rest** | AES-256 (S3, RDS, Redis) |
+| **Secrets Management** | AWS Secrets Manager (auto-rotation every 90 days) |
+| **PII Protection** | Encrypted columns using **KMS CMKs per tenant** |
+| **Key Rotation** | Automated and versioned through CI/CD |
 
-Security audit logs to CloudWatch and S3
+### 🛡️ Application Security
 
-Data Protection
+- **CSRF** and **CORS** hardened  
+- **JWT** expiration: **15 minutes**, refresh token TTL: **24 hours**  
+- **HMAC-signed webhooks** using **256-bit keys**  
+- **Input validation** aligned with **OWASP ASVS L1 + L2**  
+- **Vulnerability scanning:** Trivy + Dependabot  
+- **Static analysis:** SonarQube (PR-gated checks) 
 
-Encryption in Transit: TLS 1.3 end-to-end
+### 🚨 Incident Response
 
-Encryption at Rest: AES-256 (S3, RDS, Redis)
-
-Secrets: AWS Secrets Manager (auto-rotation 90 days)
-
-PII: Encrypted columns using KMS CMKs per tenant
-
-Key Rotation: automated and versioned through CI/CD
-
-Application Security
-
-CSRF and CORS hardened
-
-JWT expiration: 15 min, refresh token TTL: 24 h
-
-HMAC-signed webhooks (256-bit keys)
-
-Input validation (OWASP ASVS L1 + L2)
-
-Vulnerability scanning: Trivy + Dependabot
-
-Static analysis: SonarQube gated on PRs
-
-Incident Response
-
-Alerts via PagerDuty → Security Team on critical findings
-
-Forensics retention: 180 days (S3 Glacier)
-
-Incident bridge auto-opens via Slack + Zoom
-
-Compliance: SOC2, GDPR, ISO 27001 aligned
+- **Alerts:** PagerDuty → Security Team (critical findings)  
+- **Forensics retention:** 180 days (S3 Glacier)  
+- **Incident bridge:** auto-opens via Slack + Zoom  
+- **Compliance:** SOC 2, GDPR, ISO 27001 aligned  

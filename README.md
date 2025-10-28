@@ -1,6 +1,7 @@
 # Remote EOR Embedded Integration
 Comprehensive technical documentation for the **Embedded Employer of Record (EOR) Integration** between **Acme Platform** and **Remote**, detailing architecture, design patterns, data flows, and operational strategies.
 
+Presentation: https://docs.google.com/presentation/d/1UPYHBcPsrQIKu783rg9zeXUfeHO-d3QWJHylpHtFMJk/edit?usp=sharing
 ---
 
 ## 🗺️ Architecture Overview (C4 Summary Map)

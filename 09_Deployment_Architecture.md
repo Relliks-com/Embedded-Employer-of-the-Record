@@ -70,7 +70,6 @@
 | Primary           | us-east-1 | ______ | _____ |
 | Disaster Recovery | eu-west-1 | 15 min | 30 min|
 
-Disaster Recovery:  (RPO: , RTO: )
 
 ## 🔒Networking & Security
 
